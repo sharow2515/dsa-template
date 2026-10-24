@@ -26,3 +26,8 @@ dsa::Combination com(max_n, p);
 ```cpp
 com.com(n, k);
 ```
+
+## Verify
+
+ABC034 - C
+- https://atcoder.jp/contests/abc034/submissions/80293050
