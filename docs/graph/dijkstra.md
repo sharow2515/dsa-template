@@ -44,3 +44,8 @@ g.add_edge(from, to, cost);
 g.dijkstra(s);
 ```
 
+
+## Verify
+
+競プロ典型 90 問 - 013
+- https://atcoder.jp/contests/typical90/submissions/80413143

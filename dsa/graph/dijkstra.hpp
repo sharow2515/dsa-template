@@ -12,7 +12,7 @@ template <typename T>
 class Dijkstra{
 
     private:
-        using P = pair<T, int>;    
+        using P = std::pair<T, int>;    
         struct Edge{
             T cost;
             int to;
