@@ -6,7 +6,7 @@
 
 namespace dsa{
 
-std::vector<long long> manacher(const std::string& s){
+inline std::vector<long long> manacher(const std::string& s){
 
     int i = 0, j = 0, n = s.size();
     std::vector<long long> r(n, 0);

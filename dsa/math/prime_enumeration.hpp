@@ -5,7 +5,7 @@
 
 namespace dsa{
 
-std::vector<int> enumerate_primes(int MAX_N){
+inline std::vector<int> enumerate_primes(int MAX_N){
     if(MAX_N<2) return {};
     MAX_N++;
     std::vector<bool> is_prime(MAX_N, true);

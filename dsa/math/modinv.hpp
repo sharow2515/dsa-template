@@ -5,7 +5,7 @@
 
 namespace dsa{
 
-long long modinv(long long a, long long mod){
+inline long long modinv(long long a, long long mod){
     long long b = mod, x = 1, y = 0;
     while(b){
         long long t = a/b;

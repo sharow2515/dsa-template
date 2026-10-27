@@ -7,7 +7,7 @@
 
 namespace dsa{
 
-std::vector<int> z_algorithm(const std::string& s){
+inline std::vector<int> z_algorithm(const std::string& s){
 
     int c = 0, n = s.size();
     std::vector<int> z(n, 0);
