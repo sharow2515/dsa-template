@@ -5,12 +5,11 @@
 | 内容 | コード | 計算量 |
 | --- | --- | --- |
 | 宣言 | `UnionFind uf(N)`| $O(N)$ |
-| aの根の取得 | `uf.find(a)` | $O(\alpha(N))$ |
-| aとbを統合 | `uf.merge(a, b)` | $O(\alpha(N))$ |
-| aとbの統合判定 | `uf.connected(a, b)` | $O(\alpha(N))$ |
-| aが属するグループの要素数 | `uf.size(a)` | $O(\alpha(N))$ |
+| aの根の取得 | `uf.find(a)` | 償却 $O(\log N)$ |
+| aとbを統合 | `uf.merge(a, b)` | 償却 $O(\log N)$ |
+| aとbの統合判定 | `uf.connected(a, b)` | 償却 $O(\log N)$ |
+| aが属するグループの要素数 | `uf.size(a)` | 償却 $O(\log N)$ |
 
-$\alpha(N)$はアッカーマンの逆関数
 
 ## 使用方法
 
@@ -18,7 +17,8 @@ $\alpha(N)$はアッカーマンの逆関数
 
 頂点数nのUnionFindを作成する
 
-計算量 $O(N)$
+計算量：$O(N)$
+
 ```C++
 dsa::UnionFind uf(n);
 ```
@@ -28,7 +28,7 @@ dsa::UnionFind uf(n);
 
 頂点aの根(root)を取得する
 
-計算量 $O(\alpha(N))$
+計算量：償却 $O(\log N)$
 
 ```C++
 uf.find(a);
@@ -39,7 +39,7 @@ uf.find(a);
 
 aとbを統合する
 
-計算量 $O(\alpha(N))$
+計算量：償却 $O(\log N)$
 
 ```C++
 uf.merge(a, b);
@@ -50,7 +50,7 @@ uf.merge(a, b);
 
 頂点aと頂点bが同じグループに属するか判定する
 
-計算量 $O(\alpha(N))$
+計算量：償却 $O(\log N)$
 
 ```C++
 uf.connected(a, b);
@@ -61,7 +61,7 @@ uf.connected(a, b);
 
 頂点aが属しているグループの要素数を取得
 
-計算量 $O(\alpha(N))$
+計算量：償却 $O(\log N)$
 
 ```C++
 uf.size(a);
