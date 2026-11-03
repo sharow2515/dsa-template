@@ -5,29 +5,29 @@
 
 namespace dsa{
 
-template <class Monoid>
+template <class MonoidWithMonoid>
 class LazySegmentTree{
 
     public:
-        using S = typename Monoid::S;
-        using F = typename Monoid::F;
+        using S = typename MonoidWithMonoid::S;
+        using F = typename MonoidWithMonoid::F;
 
     private:
         int n, sz, lg;
         std::vector<S> data;
         std::vector<F> lazy;
 
-        void update(int k){ data[k] = Monoid::op(data[k<<1], data[k<<1|1]); }
+        void update(int k){ data[k] = MonoidWithMonoid::op(data[k<<1], data[k<<1|1]); }
         
         void all_apply(int k, const F& f){
-            data[k] = Monoid::mapping(f, data[k]);
-            if(k<sz) lazy[k] = Monoid::composition(f, lazy[k]);
+            data[k] = MonoidWithMonoid::mapping(f, data[k]);
+            if(k<sz) lazy[k] = MonoidWithMonoid::composition(f, lazy[k]);
         }
 
         void push(int k){
             all_apply(k<<1, lazy[k]);
             all_apply(k<<1|1, lazy[k]);
-            lazy[k] = Monoid::id();
+            lazy[k] = MonoidWithMonoid::id();
         }
 
         void push_path(int l, int r){
@@ -42,8 +42,8 @@ class LazySegmentTree{
         explicit LazySegmentTree(int n_) : n(n_) {
             sz = 1, lg = 0;
             while(sz<n) sz<<=1, lg++;
-            data.assign(2*sz, Monoid::e());
-            lazy.assign(sz, Monoid::id());
+            data.assign(2*sz, MonoidWithMonoid::e());
+            lazy.assign(sz, MonoidWithMonoid::id());
         }
 
         explicit LazySegmentTree(const std::vector<S>& v) : LazySegmentTree((int)v.size()) {
@@ -65,15 +65,15 @@ class LazySegmentTree{
         }
 
         S prod(int l, int r){
-            if(l==r) return Monoid::e();
+            if(l==r) return MonoidWithMonoid::e();
             l += sz, r += sz;
             push_path(l, r);
-            S sml = Monoid::e(), smr = Monoid::e();
+            S sml = MonoidWithMonoid::e(), smr = MonoidWithMonoid::e();
             for(; l<r; l>>=1, r>>=1){
-                if(l&1) sml = Monoid::op(sml, data[l++]);
-                if(r&1) smr = Monoid::op(data[--r], smr);
+                if(l&1) sml = MonoidWithMonoid::op(sml, data[l++]);
+                if(r&1) smr = MonoidWithMonoid::op(data[--r], smr);
             }
-            return Monoid::op(sml, smr);
+            return MonoidWithMonoid::op(sml, smr);
         }
 
         void apply(int l, int r, const F& f){
@@ -93,7 +93,7 @@ class LazySegmentTree{
         }
 
 };
-    
+
 }
 
 #endif // LAZY_SEGMENT_TREE_HPP
